@@ -1,5 +1,5 @@
 {
-  "name": "typescript-webpack-threejs-template",
+  "name": "sandclock",
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve",
@@ -16,6 +16,7 @@
     "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
+    "copy-webpack-plugin": "^11.0.0",
     "eslint": "^8.29.0",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",

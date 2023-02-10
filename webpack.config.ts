@@ -1,4 +1,5 @@
 import * as path from 'path'
+import * as copyWebpackPlugin from 'copy-webpack-plugin'
 
 export default {
   mode: 'development',
@@ -13,7 +14,7 @@ export default {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.js']
@@ -29,5 +30,13 @@ export default {
   },
   watchOptions: {
     ignored: /node_modules/
-  }
+  },
+  plugins: [
+    new copyWebpackPlugin({
+      patterns: [
+        { from: 'src/index.html', to: 'index.html' },
+        { from: 'src/assets', to: 'assets' }
+      ]
+    })
+  ]
 }
