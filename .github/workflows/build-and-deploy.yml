@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Build and Deploy
 
 on:
   # Runs on pushes targeting the default branch
@@ -21,8 +21,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    name: Build App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        name: Setup Node
+        with:
+          node-version: "16.x"
+          cache: 'yarn'
+      - run: yarn --production=false
+        name: Install Dependencies
+      - run: yarn build
+        name: Build Node
+
   deploy:
+    name: Deploy to GitHub Pages
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
