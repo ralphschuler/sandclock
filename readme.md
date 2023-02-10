@@ -1,6 +1,23 @@
 # Sandclock
 
+
+## Idea
+- Simulate a little eco system with plants and animals
+- Day and night cycle with sun and moon based on real time
+- Plants grow and die
+- Animals eat plants, reproduce, eat other animals, die
+- Weather with rain, wind, snow, thunder, lightning and fog based on real world data
+
 ## Setup
+
+### Update Raspbian
+> ```bash
+> sudo apt-get update
+> sudo apt-get upgrade
+> sudo apt-get dist-upgrade
+> sudo apt-get autoremove
+> sudo apt-get autoclean
+> ```
 
 ### Install Display
 
@@ -24,7 +41,7 @@
 > ```
 
 > #### Configure Touchscreen
-> `sudo nano /usr/share/X11/xorg.conf.d/99-calibration.conf``
+> `sudo nano /usr/share/X11/xorg.conf.d/99-calibration.conf`
 > ```bash
 > Section "InputClass"
 >   Identifier "calibration"
