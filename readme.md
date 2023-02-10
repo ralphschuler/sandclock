@@ -1,4 +1,24 @@
 
 ## Resources
 - [Raspberry Pi + Display Waveshare LCD HDMI Touch](https://www.opendisplaycase.com/tutorials-learn/raspberry-pi-display-waveshare-lcd-1024x600-hdmi-touch.html)
-- [Kiosk Modus auf Touchscreen am Raspberry Pi mit automatischer Anmeldung im Browser](https://smarthomeyourself.de/wiki/raspberrypi/kiosk-modus-auf-touchscreen-am-raspberry-pi-mit-automatischer-anmeldung-im-browser/)
+
+## Setup
+```bash
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox
+sudo apt-get install --no-install-recommends chromium-browser
+```
+
+`sudo nano /etc/xdg/openbox/autostart`
+```bash
+xset s off
+xser s noblank
+xset -dpms
+
+chromium-browser --noerrdialogs  --disable-session-crashed-bubble --incognito --disable-infobars --kiosk 'http://kiosk.de'
+```
+
+## Start
+`nano .bash_profile`
+```bash
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
+```
