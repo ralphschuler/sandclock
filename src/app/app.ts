@@ -7,7 +7,7 @@ export class App {
   private readonly camera = new PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 10000);
   private readonly renderer = new WebGLRenderer({
     antialias: true,
-    canvas: document.getElementById('main-canvas') as HTMLCanvasElement,
+    canvas: document.getElementById('canvas') as HTMLCanvasElement,
   });
 
   private brick: Brick;
