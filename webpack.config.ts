@@ -1,5 +1,7 @@
 import * as path from 'path'
+
 import * as copyWebpackPlugin from 'copy-webpack-plugin'
+import * as htmlWebpackPlugin from 'html-webpack-plugin'
 
 export default {
   mode: 'development',
@@ -32,10 +34,13 @@ export default {
     ignored: /node_modules/
   },
   plugins: [
+    new htmlWebpackPlugin({
+      template: 'index.ejs',
+      title: 'My App'
+    }),
     new copyWebpackPlugin({
       patterns: [
-        { from: 'src/index.html', to: 'index.html' },
-        { from: 'src/assets', to: 'assets' }
+        { from: 'assets/', to: 'assets/' }
       ]
     })
   ]
