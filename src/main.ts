@@ -182,7 +182,18 @@ const getPixel = (x: number, y: number) => {
   };
 };
 
+const fadeColorTo = (color: { r: number, g: number, b: number, a: number }, target: { r: number, g: number, b: number, a: number }) => {
+  const hsv = rgbToHsv(color.r, color.g, color.b);
+  const targetHsv = rgbToHsv(target.r, target.g, target.b);
+  const h = hsv.h + (targetHsv.h - hsv.h) * 0.2;
+  const s = hsv.s + (targetHsv.s - hsv.s) * 0.2;
+  const v = hsv.v + (targetHsv.v - hsv.v) * 0.2;
+  return hsvToRgb(h, s, v);
+}
+
+let frame = 0;
 const render = () => {
+  frame++;
   resize();
 
   logFPS();
@@ -201,29 +212,22 @@ const render = () => {
   }
 
   const totalPixels = canvas.clientWidth * canvas.clientHeight;
-  const chunkSize = 1000;
+  const chunkSize = 5000;
   const chunkCount = Math.ceil(totalPixels / chunkSize);
 
-  const i = new Date().getSeconds() % chunkCount;
+  const i = frame % chunkCount;
   const chunk = arrayBufferView.slice(i * 4, (i + chunkSize) * 4);
   const chunkPixels = chunk.length / 4;
   for (let j = 0; j < chunkPixels; j++) {
-    const pixel = {
-      r: chunk[j * 4],
-      g: chunk[j * 4 + 1],
-      b: chunk[j * 4 + 2],
-      a: chunk[j * 4 + 3],
-    };
-    const {
-      h,
-      s,
-      v,
-    } = rgbToHsv(pixel.r, pixel.g, pixel.b);
-    const newPixel = hsvToRgb(h, s - 0.1, v);
-    chunk[j * 4] = newPixel.r;
-    chunk[j * 4 + 1] = newPixel.g;
-    chunk[j * 4 + 2] = newPixel.b;
-    chunk[j * 4 + 3] = newPixel.a;
+    const x = (i * chunkSize + j) % canvas.clientWidth;
+    const y = Math.floor((i * chunkSize + j) / canvas.clientWidth);
+    const pixel = getPixel(x, y);
+    setPixel(x, y, fadeColorTo(pixel, {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 255,
+    }))
   }
 
   gl.bindTexture(gl.TEXTURE_2D, texture);
