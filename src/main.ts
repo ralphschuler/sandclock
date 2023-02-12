@@ -146,6 +146,16 @@ const hsvToRgb = (h: number, s: number, v: number) => {
   };
 };
 
+const getPixel = (x: number, y: number) => {
+  const index = (y * arrayBufferView.width + x) * 4;
+  return {
+    r: arrayBufferView[index],
+    g: arrayBufferView[index + 1],
+    b: arrayBufferView[index + 2],
+    a: arrayBufferView[index + 3],
+  };
+};
+
 const render = () => {
   resize();
 
@@ -164,12 +174,29 @@ const render = () => {
     ));
   }
 
+  for (let i = 0; i < 200; i++) {
+    const x = Math.floor(Math.random() * canvas.clientWidth);
+    const y = Math.floor(Math.random() * canvas.clientHeight);
+
+    setPixel(x, y, {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 1,
+    });
+  }
+
   gl.bindTexture(gl.TEXTURE_2D, texture);
   gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, canvas.clientWidth, canvas.clientHeight, gl.RGBA, gl.UNSIGNED_BYTE, arrayBufferView);
   setBuffersAndAttributes(gl, programInfo, bufferInfo);
   drawBufferInfo(gl, bufferInfo, gl.TRIANGLE_STRIP);
 
   requestAnimationFrame(render);
+};
+
+const setupUpdateChecker = () => {
+  const version = process.env.VERSION;
+  const url = `https://raw.githubusercontent.com/andrewiggins/andrewiggins.github.io/master/mandelbrot/version.txt?${Date.now()}`;
 };
 
 requestAnimationFrame(render);

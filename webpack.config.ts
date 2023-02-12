@@ -60,7 +60,8 @@ export default {
     }),
     new copyWebpackPlugin({
       patterns: [
-        { from: 'assets/', to: 'assets/' }
+        { from: 'assets/', to: 'assets/' },
+        { from: 'version.json', to: 'version.json'}
       ]
     })
   ]
