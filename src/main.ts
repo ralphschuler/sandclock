@@ -106,6 +106,32 @@ const blueTones = [
   { r: 0, g: 0, b: 150, a: 255 }
 ];
 
+const rgbToHsv = (r: number, g: number, b: number) => {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const d = max - min;
+  let h = 0;
+  if (d === 0) {
+    h = 0;
+  } else if (max === r) {
+    h = ((g - b) / d) % 6;
+  } else if (max === g) {
+    h = (b - r) / d + 2;
+  } else if (max === b) {
+    h = (r - g) / d + 4;
+  }
+  h = Math.round(h * 60);
+  if (h < 0) {
+    h += 360;
+  }
+  const s = max === 0 ? 0 : d / max;
+  const v = max;
+  return { h, s, v };
+};
+
 const hsvToRgb = (h: number, s: number, v: number) => {
   const c = v * s;
   const x = c * (1 - Math.abs((h / 60) % 2 - 1));
@@ -165,7 +191,7 @@ const render = () => {
   gl.clearColor(0, 0, 0, 1);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 5; i++) {
     const x = Math.floor(Math.random() * canvas.clientWidth);
     const y = Math.floor(Math.random() * canvas.clientHeight);
     setPixel(x, y, hsvToRgb(Math.random() * 360, 
@@ -174,16 +200,30 @@ const render = () => {
     ));
   }
 
-  for (let i = 0; i < 200; i++) {
-    const x = Math.floor(Math.random() * canvas.clientWidth);
-    const y = Math.floor(Math.random() * canvas.clientHeight);
+  const totalPixels = canvas.clientWidth * canvas.clientHeight;
+  const chunkSize = 1000;
+  const chunkCount = Math.ceil(totalPixels / chunkSize);
 
-    setPixel(x, y, {
-      r: 0,
-      g: 0,
-      b: 0,
-      a: 1,
-    });
+  const i = new Date().getSeconds() % chunkCount;
+  const chunk = arrayBufferView.slice(i * 4, (i + chunkSize) * 4);
+  const chunkPixels = chunk.length / 4;
+  for (let j = 0; j < chunkPixels; j++) {
+    const pixel = {
+      r: chunk[j * 4],
+      g: chunk[j * 4 + 1],
+      b: chunk[j * 4 + 2],
+      a: chunk[j * 4 + 3],
+    };
+    const {
+      h,
+      s,
+      v,
+    } = rgbToHsv(pixel.r, pixel.g, pixel.b);
+    const newPixel = hsvToRgb(h, s - 0.1, v);
+    chunk[j * 4] = newPixel.r;
+    chunk[j * 4 + 1] = newPixel.g;
+    chunk[j * 4 + 2] = newPixel.b;
+    chunk[j * 4 + 3] = newPixel.a;
   }
 
   gl.bindTexture(gl.TEXTURE_2D, texture);
