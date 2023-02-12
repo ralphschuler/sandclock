@@ -44,7 +44,7 @@ jobs:
           cache: 'yarn'
       - run: yarn --production=false
         name: Install Dependencies
-      - run: yarn build
+      - run: yarn build:prod
         name: Build Node
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
