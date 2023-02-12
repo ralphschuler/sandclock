@@ -1,0 +1,15 @@
+{
+    "colors": [
+      "#5c2e00",
+      "#a1550b",
+      "#b87737",
+      "#a1550b"
+    ],
+    "opacity": 1, 
+    "gravity": 0, 
+    "slip": 0, 
+    "slide": 0, 
+    "scatter": 0,
+    "reactions": [],
+    "selfReactions": []
+  }

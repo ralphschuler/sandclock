@@ -5,8 +5,12 @@
       "DOM"
     ],
     "target": "ESNEXT",
+    "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
     "strict": true
-  }
+  },
+  "include": [
+    "src/**/*"
+, "disabled/constants.ts"  ]
 }

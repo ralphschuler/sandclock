@@ -1,0 +1,8 @@
+{
+    "scale": 100,
+    "ocataves": 3,
+    "persistance": 0.025,
+    "lacunarity": 0.001,
+    "amplitude": 0.3,
+    "frequency": 1
+}

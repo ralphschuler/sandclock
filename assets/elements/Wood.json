@@ -1,0 +1,18 @@
+{
+    "colors": [
+      "#563232",
+      "#ffc18c",
+      "#84240c",
+      "#da6d42",
+      "#e7cfb4"
+    ],
+    "opacity": 1, 
+    "gravity": 0, 
+    "slip": 0, 
+    "slide": 0, 
+    "scatter": 0,
+    "immobile": true,
+    "reactions": [],
+    "selfReactions": []
+  }
+  

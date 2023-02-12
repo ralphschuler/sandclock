@@ -1,0 +1,27 @@
+{
+    "colors": [
+      "#007799",
+      "#77eedd",
+      "#00bbbb"
+    ],
+    "opacity": 0.51, 
+    "gravity": 0.8, 
+    "slip": 0.95, 
+    "slide": 0, 
+    "scatter": 0.35,
+    "hidden": true,
+    "reactions": [
+      {
+        "chance": 0.85,
+        "becomes": "Salt",
+        "singleNeighbor": {
+            "element": "Fire",
+            "becomes": "Steam",
+            "minimum": 1,
+            "maximum": 8,
+            "affects": 1
+        }
+      }
+    ],
+    "selfReactions": []
+  }

@@ -1,0 +1,8 @@
+{
+    "Coldest": 0.05,
+    "Colder": 0.18,
+    "Cold": 0.4,
+    "Hot": 0.6,
+    "Hotter": 0.8,
+    "Hottest": 1
+  }

@@ -11,15 +11,19 @@ export default {
     static: {
       serveIndex: true,
       directory: __dirname
+    },
+    devMiddleware: {
+      writeToDisk: true,
     }
   },
+  devtool: 'source-map',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.glsl']
   },
   module: {
     rules: [
@@ -28,6 +32,22 @@ export default {
         use: 'ts-loader',
         exclude: /node_modules/
       },
+      {
+        test: /\.glsl$/,
+        use: 'raw-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.worker\.ts$/,
+        use: {
+          loader: 'worker-loader',
+          options: {
+            inline: 'fallback',
+            filename: 'worker.js'
+          }
+        },
+        exclude: /node_modules/
+      }
     ]
   },
   watchOptions: {

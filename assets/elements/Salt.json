@@ -1,0 +1,25 @@
+{
+    "colors": [
+      "#d2d2d2",
+      "#f9f9f9"
+    ],
+    "opacity": 0.6, 
+    "gravity": 0.75, 
+    "slip": 0.05, 
+    "slide": 0.7, 
+    "scatter": 0,
+    "reactions": [
+      {
+        "chance": 0.95,
+        "becomes": "SaltWater",
+        "singleNeighbor": {
+            "element": "Salt",
+            "becomes": "Void",
+            "minimum": 1,
+            "maximum": 8,
+            "affects": 1
+        }
+      }
+    ],
+    "selfReactions": []
+  }

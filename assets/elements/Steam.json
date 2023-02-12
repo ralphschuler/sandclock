@@ -1,0 +1,46 @@
+{
+    "colors": [
+      "#171a21",
+      "#66c0f4",
+      "#1b2838",
+      "#1b2838",
+      "#2a475e",
+      "#c7d5e0"
+    ],
+    "opacity": 0.2, 
+    "gravity": -0.2, 
+    "slip": 0, 
+    "slide": 0, 
+    "scatter": 0.4,
+    "hidden": true,
+    "reactions": [
+      {
+        "chance": 0.8,
+        "becomes": "Water",
+        "singleNeighbor": {
+            "element": "Steam",
+            "becomes": "Water",
+            "minimum": 3,
+            "maximum": 8,
+            "affects": 2
+        }
+      },
+      {
+        "chance": 0.05,
+        "becomes": "Void",
+        "singleNeighbor": {
+            "element": "Void",
+            "becomes": "Steam",
+            "minimum": 1,
+            "maximum": 8,
+            "affects": 1
+        }
+      }
+    ],
+    "selfReactions": [
+      {
+        "chance": 0.008,
+        "becomes": "Water"
+      }
+    ]
+  }

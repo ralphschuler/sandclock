@@ -1,0 +1,10 @@
+{
+    "colors": [],
+    "opacity": 0, 
+    "gravity": 0, 
+    "slip": 0, 
+    "slide": 0, 
+    "scatter": 0,
+    "reactions": [],
+    "selfReactions": []
+  }

@@ -1,0 +1,30 @@
+{
+    "elements": [
+      {
+        "element": "Stone",
+        "pow": 0,
+        "height": 0
+      },
+      {
+        "element": "Lava",
+        "pow": 0,
+        "height": 0.1
+      },
+      {
+        "element": "Stone",
+        "pow": 0,
+        "height": 0.25
+      },
+      {
+        "element": "Dirt",
+        "pow": 0,
+        "height": 0.75
+      },
+      {
+        "element": "Grass",
+        "pow": 0,
+        "height": 0.95
+      }
+    ]
+  }
+  

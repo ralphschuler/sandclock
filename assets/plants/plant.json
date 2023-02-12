@@ -1,0 +1,26 @@
+{
+    "axiom": "F",
+    "iterations": 4,
+    "rules": [
+        {
+            "symbol": "F",
+            "rule": "F[NF]F",
+            "probability": 0.5
+        },
+        {
+            "symbol": "F",
+            "rule": "F[EF]F",
+            "probability": 0.5
+        },
+        {
+            "symbol": "F",
+            "rule": "F[SF]F",
+            "probability": 0.5
+        },
+        {
+            "symbol": "F",
+            "rule": "F[WF]F",
+            "probability": 0.5
+        }
+    ]
+}
